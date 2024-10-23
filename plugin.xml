@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  id="cordova-plugin-telerik-imagepicker"
-  version="2.3.5">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-telerik-imagepicker"
+        version="2.3.5">
 
     <name>ImagePicker</name>
 
@@ -30,7 +30,7 @@
 
         <preference name="PHOTO_LIBRARY_USAGE_DESCRIPTION" default=" " />
         <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
-          <string>$PHOTO_LIBRARY_USAGE_DESCRIPTION</string>
+            <string>$PHOTO_LIBRARY_USAGE_DESCRIPTION</string>
         </config-file>
 
         <header-file src="src/ios/SOSPicker.h" />
@@ -38,7 +38,7 @@
 
         <header-file src="src/ios/GMImagePicker/FeHourGlass.h" />
         <source-file src="src/ios/GMImagePicker/FeHourGlass.m" />
-      
+
         <header-file src="src/ios/GMImagePicker/UIImage+fixOrientation.h" />
         <source-file src="src/ios/GMImagePicker/UIImage+fixOrientation.m" />
 
@@ -110,6 +110,10 @@
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
 
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
+
         <preference name="ANDROID_SUPPORT_V7_VERSION" default="27+"/>
         <framework src="com.android.support:appcompat-v7:$ANDROID_SUPPORT_V7_VERSION" />
 
@@ -156,20 +160,20 @@
 
     <!-- browser -->
     <platform name="browser">
-      <config-file parent="/*" target="config.xml">
-  				<feature name="ImagePicker">
-  						<param name="browser-package" value="ImagePicker"/>
-  				</feature>
-  		</config-file>
+        <config-file parent="/*" target="config.xml">
+            <feature name="ImagePicker">
+                <param name="browser-package" value="ImagePicker"/>
+            </feature>
+        </config-file>
 
-      <!-- Required for browserify: we always link module below as there is conditional reference
-      to this module from requestFileSystem and resolveLocalFileSystemURI modules. -->
-      <js-module src="www/browser/isChrome.js" name="isChrome">
-          <runs />
-      </js-module>
+        <!-- Required for browserify: we always link module below as there is conditional reference
+        to this module from requestFileSystem and resolveLocalFileSystemURI modules. -->
+        <js-module src="www/browser/isChrome.js" name="isChrome">
+            <runs />
+        </js-module>
 
-  		<js-module src="src/browser/ImagePicker.js" name="ImagePickerProxy">
-  				<runs/>
-  		</js-module>
+        <js-module src="src/browser/ImagePicker.js" name="ImagePickerProxy">
+            <runs/>
+        </js-module>
     </platform>
 </plugin>
